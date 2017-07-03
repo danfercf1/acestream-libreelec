@@ -1,0 +1,23 @@
+[Unit]
+Description=%p container
+Requires=service.system.docker.service
+After=service.system.docker.service
+
+[Service]
+Restart=always
+RestartSec=10s
+TimeoutStartSec=0
+ExecStart=/storage/.kodi/addons/service.system.docker/bin/docker run \
+          --rm \
+          --name=%p \
+          -h=libreelec-%p \
+          -p=62062:62062 \
+          aaaler/acestream-pi:3.1.14.0 \
+          --client-console \
+          --live-buffer 50 \
+          --max-connections 400 \
+          --max-peers 200
+ExecStop=/storage/.kodi/addons/service.system.docker/bin/docker stop %p
+
+[Install]
+WantedBy=multi-user.target
