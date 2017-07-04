@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-/storage/.kodi/addons/service.system.docker/bin/docker pull aaaler/acestream-pi:3.1.14.0
+/storage/.kodi/addons/service.system.docker/bin/docker pull aaaler/acestream-pi:latest
 systemctl enable $PWD/acestream.service
 systemctl start acestream
